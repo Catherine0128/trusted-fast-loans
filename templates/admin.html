@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <tittle>Admin Dashboard | Trusted Fast Loans</tittle>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="header">
+</div>
+
+<div class="container">
+
+     <style>
+        body
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 30px;
+        }
+ 
+        h1 {
+            text-align: center;
+            color: #1f3c88;
+        }
+
+        table {
+             width: 100%
+             bolder-collapse: collapse;
+             background: white;
+             margin-top: 20px;
+             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            bolder: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th:hover {
+            background: #f1f1f1;
+        }
+
+        .appprove-btn{
+            background: #dc3545;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .reject-btn{
+            background: #dc3545;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .approve-btn:hover{
+            background: #218838;
+        }
+
+        .reject-btn:hover{
+            background: #c82333;
+        }
+
+        .status-approved{
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-rejected{
+           color: red;
+           font-weight: bold;
+        }
+
+        .status-pending{
+           color: orange;
+           font-weight: bold;
+        }
+
+    </style>
+  </div>
+</head>
+<body>
+
+<a href="/admin/logout" style="float:right;color:red;">
+    Logout
+</a>
+
+<h1>Trusted Fast Loans - Admin Dashboard</h1>
+
+<table>
+
+     <tr>
+         <th>ID</th>
+         <th>Name</th>
+         <th>Phone</th>
+         <th>Amount</th>
+         <th>Loan Type</th>
+         <th>Status</th>
+         <th>Action</th>
+     </tr>
+
+        {% for loan in loans %}
+     <tr>
+          <td>{{ loan.id }}</td>
+          <td>{{ loan.name }}</td>
+          <td>{{ loan.phone }}</td>
+          <td>{{ loan.amount }}</td>
+          <td>{{ loan.loan_type }}</td>.
+
+          <td class="{{ loan.status|lower }}">
+              {{ loan.status }}
+          </td>
+
+          <td>
+              {% if loan.status == "Pending" %}
+                  <a href="/approve/{{ loan.id }}" class="btn approve">Approve</a>
+                  <a href="/reject/{{ loan.id }}" class="btn reject">Reject</a>
+              {% else %}
+                 {{ loan.status }}
+              {% endif %}
+      </td>
+      </tr>
+      {% endfor %}  
+
+</table>
+
+</body>
+</html> 
+     

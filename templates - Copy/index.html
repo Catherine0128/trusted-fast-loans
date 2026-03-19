@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+      <p>Apply for a fast and trusted loan in minutes.</p>
+
+      <form method="POST" action="/apply-loan">
+
+        <label>Full Name</label>
+        <input type="text" name="name" placeholder="Enter your full name" required>
+
+        <label>Phone Number</label>
+        <input type="tel" name="phone" placeholder="e.g 0692262283" required>
+
+        <label>Amount</label>
+        <input type="number" name="amount" placeholder="Enter amount" required>
+
+        <label>Loan type</label>
+        <select name="loan_type" required>
+          <option value="">-- Choose loan type --</option>
+          <option value="Business">Business</option>
+          <option value="Personal">Personal</option>
+          <option value="Consumer">Consumer</option>
+        </select>
+
+        <button type="submit">Submit Application</button>
+
+      </form>
+</div>
+
+</body>
+</html>
