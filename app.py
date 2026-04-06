@@ -57,7 +57,7 @@ def apply_loan():
     conn.commit()
     conn.close()
 
-    return redirect("/success")
+    return f"Application received from {name}")
 
 @app.route("/success")
 def success():
