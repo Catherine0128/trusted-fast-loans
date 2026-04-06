@@ -1,4 +1,2 @@
-Plain text
-
-Flask
-Werkzeug
+flask
+gunicorn
