@@ -1,7 +1,7 @@
 
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, if  admin and check_password_hash(admin[2], password):
 
 import os
 import sqlite3
@@ -38,7 +38,7 @@ def init_db():
 def home():
     return render_template("index.html")
 
-@app.route("/apply-loan", methods=["POST"])
+@app.route("/apply", methods=["POST"])
 def apply_loan():
     name = request.form.get("name")
     phone = request.form.get("phone")
@@ -57,7 +57,7 @@ def apply_loan():
     conn.commit()
     conn.close()
 
-    return f"Application received from {name}")
+    return redirect("/success")
 
 @app.route("/success")
 def success():
