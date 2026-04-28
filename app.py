@@ -1,7 +1,6 @@
 
-
-from flask import Flask, render_template, request, redirect, url_for, session, flash
-from werkzeug.security import generate_password_hash, if  admin and check_password_hash(admin[2], password):
+from flask import Flask, render_template, request, redirect, session, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 import os
 import sqlite3
@@ -17,7 +16,6 @@ app.secret_key = "trusted_fast_loans_secret_2026"
 def init_db():
 
     conn = sqlite3.connect(DB_PATH)
-
     conn = conn.cursor()
 
     cursor.execute("""
@@ -31,8 +29,23 @@ def init_db():
     )
     """)
 
+   cursor.execute("""
+   CREATE TABLE IF NOT EXIST admins ( 
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       username TEXT,
+       password TEXT
+   )
+   """)
+
+   cursor.execute(SELECT * FROM admins WHERE username=?, ("admin"))
+   if not cursor.fetchal():
+    hashed = generate_password_hash("admin123")
+    cursor.execute("INSERT INTO admins (username, password) VALUES (?, ?)", ("admin", hashed))
+
     conn.commit()
     conn.close()
+
+init_db()
 
 @app.route("/")
 def home():
